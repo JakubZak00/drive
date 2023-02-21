@@ -41,9 +41,9 @@ class ExamController extends AbstractController
 
             if($replay){
                 if($replay == ($query->getAnswer())){
-                    $this->addFlash('success', 'Dobrze');
+                    $this->addFlash('success', 'Prawidłowa odpowiedź');
                 }else{
-                    $this->addFlash('negative', 'Źle');
+                    $this->addFlash('negative', 'Nieprawidłowa odpowiedź');
                 }
             }
             return $this->render('exam/examAnswer.html.twig', [

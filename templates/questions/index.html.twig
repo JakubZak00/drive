@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello QuestionsController!{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+
+    {{ form_row(form.name) }}
+    <button type="submit">Save Changes</button>
+    {{ form_end(form) }}
+{% endblock %}
