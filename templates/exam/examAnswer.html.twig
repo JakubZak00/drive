@@ -1,28 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ExamController!{% endblock %}
 
 {% block body %}
     <div class="container">
-    <div class="row">
-        <h4 class="my-4">{{ query.Query }}</h4>
-        {% if query.A %}
-            <button value="A" class="btn btn-outline-dark">A. {{ query.A }}</button></br>
-            <button value="A" class="btn btn-outline-dark my-3">B. {{ query.B }}</button></br>
-            <button value="C" class="btn btn-outline-dark">C. {{ query.C }}</button></br>
-        {% else %}
-            <button value="T" class="btn btn-outline-dark my-2">TAK</button></br>
-            <button value="N" class="btn btn-outline-dark ">NIE</button></br>
-        {% endif %}
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success text-center my-4" role="alert">{{ message }}</div></br>
-            <a class="btn btn-primary" href="{{ path('exam') }}">NEXT</a></div>
-        {% endfor %}
-        {% for message in app.flashes('negative') %}
-            <div class="alert alert-danger text-center my-4" role="alert">{{ message }}</div></br>
-            <a class="btn btn-primary" href="{{ path('exam') }}">NEXT</a></div>
-        {% endfor %}
+        <div class="row">
+            <h4 class="my-4">{{ query.Query }}</h4>
+            {% if query.A %}
+                <button value="A" class="btn btn-outline-dark">A. {{ query.A }}</button></br>
+                <button value="A" class="btn btn-outline-dark my-3">B. {{ query.B }}</button></br>
+                <button value="C" class="btn btn-outline-dark">C. {{ query.C }}</button></br>
+            {% else %}
+                <button value="T" class="btn btn-outline-dark my-2">TAK</button></br>
+                <button value="N" class="btn btn-outline-dark ">NIE</button></br>
+            {% endif %}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success text-center my-4" role="alert">{{ message }}</div></br>
+                <a class="btn btn-primary" href="{{ path('exam') }}">NEXT</a></div>
+            {% endfor %}
+            {% for message in app.flashes('negative') %}
+                <div class="alert alert-danger text-center my-4" role="alert">{{ message }}</div></br>
+                <a class="btn btn-primary" href="{{ path('exam') }}">NEXT</a></div>
+            {% endfor %}
+        </div>
     </div>
-    </div>
-
 {% endblock %}

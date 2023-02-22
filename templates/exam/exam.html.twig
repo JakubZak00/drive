@@ -1,20 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ExamController!{% endblock %}
-
 {% block body %}
 <div class="container">
     <div class="row text-center">
         <h4 class="my-4">{{ query.Query }}</h4>
         {% if query.A %}
-            <a class="btn btn-outline-dark" href="{{ path('quest', {'id' : query.id, 'replay' : 'A' }) }}">A. {{ query.A }}</a></br>
-            <a class="btn btn-outline-dark my-3" href="{{ path('quest', {'id' : query.id, 'replay' : 'B' }) }}">B. {{ query.B }}</a></br>
-            <a class="btn btn-outline-dark" href="{{ path('quest', {'id' : query.id, 'replay' : 'C' }) }}">C. {{ query.C }}</a></br>
+            <a class="btn btn-outline-dark" href="{{ path('examAnswer', {'id' : query.id, 'replay' : 'A' }) }}">A. {{ query.A }}</a></br>
+            <a class="btn btn-outline-dark my-3" href="{{ path('examAnswer', {'id' : query.id, 'replay' : 'B' }) }}">B. {{ query.B }}</a></br>
+            <a class="btn btn-outline-dark" href="{{ path('examAnswer', {'id' : query.id, 'replay' : 'C' }) }}">C. {{ query.C }}</a></br>
         {% else %}
-            <a class="btn btn-outline-dark my-2" href="{{ path('quest', {'id' : query.id, 'replay' : 'T' }) }}">TAK</a></br>
-            <a class="btn btn-outline-dark" href="{{ path('quest', {'id' : query.id, 'replay' : 'N' }) }}">NIE</a></br>
+            <a class="btn btn-outline-dark my-2" href="{{ path('examAnswer', {'id' : query.id, 'replay' : 'T' }) }}">TAK</a></br>
+            <a class="btn btn-outline-dark" href="{{ path('examAnswer', {'id' : query.id, 'replay' : 'N' }) }}">NIE</a></br>
         {% endif %}
     </div>
 </div>
-
 {% endblock %}

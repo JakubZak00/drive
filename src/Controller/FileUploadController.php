@@ -6,22 +6,19 @@ use App\Entity\File;
 use App\Entity\QueryDrive;
 use App\Form\FileUploadType;
 use App\Repository\FileRepository;
-use App\Repository\QueryDriveRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Routing\Annotation\Route;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
-#[AsController]
-class QuestionsController extends AbstractController
+class FileUploadController extends AbstractController
 {
-    #[Route('/upload-excel', name: 'xlsx')]
+    #[Route('/upload', name: 'xlsx')]
     public function xslx(
-        Request $request,
-        FileRepository $fileRepository,
+        Request                $request,
+        FileRepository         $fileRepository,
         EntityManagerInterface $entityManager,
     ): Response
     {
@@ -75,7 +72,7 @@ class QuestionsController extends AbstractController
         }
 
         return $this->render(
-            'questions/index.html.twig',
+            'file_upload/index.html.twig',
             [
                 'form' => $form->createView(),
             ]
