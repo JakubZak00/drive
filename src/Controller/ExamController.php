@@ -2,15 +2,19 @@
 
 namespace App\Controller;
 use App\Entity\QueryDrive;
+use App\Entity\User;
 use App\Repository\QueryDriveRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class ExamController extends AbstractController
 {
     #[Route('/exam', name: 'exam')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function Exam(
         QueryDriveRepository $queryDriveRepository,
         Request $request,
@@ -28,9 +32,11 @@ class ExamController extends AbstractController
         }
     }
     #[Route('/quest', name: 'quest')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function quest(
         QueryDriveRepository $queryDriveRepository,
         Request $request,
+        EntityManagerInterface $entityManager,
     ): Response
     {
         $replay = $request->query->get('replay');
@@ -41,8 +47,21 @@ class ExamController extends AbstractController
 
             if($replay){
                 if($replay == ($query->getAnswer())){
+                    $user = $this->getUser();
+                    $user->setPoints();
+                    $user->setMakeQuery();
+                    $ratio = (($user->getPoints()) / ($user->getMakeQuery())) * 100;
+                    $user->setRatio($ratio);
+                    $entityManager->persist($user);
+                    $entityManager->flush();
                     $this->addFlash('success', 'Prawidłowa odpowiedź');
                 }else{
+                    $user = $this->getUser();
+                    $user->setMakeQuery();
+                    $ratio = (($user->getPoints()) / ($user->getMakeQuery())) * 100;
+                    $user->setRatio($ratio);
+                    $entityManager->persist($user);
+                    $entityManager->flush();
                     $this->addFlash('negative', 'Nieprawidłowa odpowiedź');
                 }
             }
