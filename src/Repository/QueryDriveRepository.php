@@ -42,11 +42,11 @@ class QueryDriveRepository extends ServiceEntityRepository
 //    /**
 //     * @return QueryDrive[] Returns an array of QueryDrive objects
 //     */
-    public function findByContains($category): array
+    public function findByContainsCategory($category): array
     {
         return $this->createQueryBuilder('q')
-            ->containsAny('q.Category = :Category')
-            ->setParameter('Category', $category)
+            ->Where('q.Category LIKE :Category')
+            ->setParameter('Category', '%'.$category.'%')
             ->getQuery()
             ->getResult()
         ;

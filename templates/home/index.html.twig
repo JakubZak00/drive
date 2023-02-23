@@ -4,7 +4,11 @@
 <div class="container">
     <div class="row text-center">
         <h1 class="h3 m-4">Rozpocznij egzamin</h1>
-        <a href="{{ path('exam') }}" class="btn btn-primary btn-lg">Start</a>
+        <a href="{{ path('exam', {'cat' : 'A' }) }}" class="btn btn-primary btn-lg my-2">Kategoria A</a>
+        <a href="{{ path('exam', {'cat' : 'B' }) }}" class="btn btn-primary btn-lg my-2">Kategoria B</a>
+        <a href="{{ path('exam', {'cat' : 'C' }) }}" class="btn btn-primary btn-lg my-2">Kategoria C</a>
+        <a href="{{ path('exam', {'cat' : 'D' }) }}" class="btn btn-primary btn-lg my-2">Kategoria D</a>
+        <a href="{{ path('exam', {'cat' : 'T' }) }}" class="btn btn-primary btn-lg my-2">Kategoria T</a>
     </div>
 </div>
 {% endblock %}

@@ -17,8 +17,7 @@
             </a>
 
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="{{ path('home') }}" class="nav-link" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="{{ path('exam') }}" class="nav-link active">Test</a></li>
+                <li class="nav-item"><a href="{{ path('home') }}" class="nav-link active" aria-current="page">Home</a></li>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li class="nav-item"><a href="{{ path('app_logout') }}" class="nav-link">Logout</a></li>
                 {% else %}

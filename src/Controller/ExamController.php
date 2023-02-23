@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\QueryDriveRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,17 +16,14 @@ class ExamController extends AbstractController
     }
     #[Route('/exam', name: 'exam')]
     public function Exam(
+        Request $request
     ): Response
     {
-//        $cat=$queryDriveRepository->findByContains('T');
-//        dd($cat);
-        for ($i=1; $i<10; $i++){
-            $random = random_int(1, 3694);
-        }
-        $query = $this->queryDriveRepository->findOneBy(array('id' => $random));
-//        $cat = $query->getCategory();
-//        $result = $this->$cat->containsAny('B');
-//        dd($result);
+        $category = $request->query->get('cat');
+        $categoryQuery=$this->queryDriveRepository->findByContainsCategory('D');
+        $random = array_rand($categoryQuery, $num =1);
+        $query = $categoryQuery[$random];
+        
         return $this->render('exam/exam.html.twig', [
             'query' => $query,
         ]);
