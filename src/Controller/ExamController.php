@@ -20,10 +20,10 @@ class ExamController extends AbstractController
     ): Response
     {
         $category = $request->query->get('cat');
-        $categoryQuery=$this->queryDriveRepository->findByContainsCategory('D');
+        $categoryQuery=$this->queryDriveRepository->findByContainsCategory($category);
         $random = array_rand($categoryQuery, $num =1);
         $query = $categoryQuery[$random];
-        
+
         return $this->render('exam/exam.html.twig', [
             'query' => $query,
         ]);
