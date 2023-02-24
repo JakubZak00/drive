@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\File;
 use App\Entity\QueryDrive;
+use App\Enum\ExamFileColumns;
 use App\Form\FileUploadType;
 use App\Repository\FileRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -43,14 +44,14 @@ class FileUploadController extends AbstractController
                 $fileRepository->save($excel, true);
 
                 foreach ($sheetData as $row) {
-                    $NumberQuery = $row['B'];
-                    $Query = $row['C'];
-                    $A = $row['D'];
-                    $B = $row['E'];
-                    $C = $row['F'];
-                    $answer = $row['O'];
-                    $points = $row['R'];
-                    $category = $row['S'];
+                    $NumberQuery = $row[ExamFileColumns::NUMBERQUERY->value];
+                    $Query = $row[ExamFileColumns::QUERY->value];
+                    $A = $row[ExamFileColumns::ANSWER_A->value];
+                    $B = $row[ExamFileColumns::ANSWER_B->value];
+                    $C = $row[ExamFileColumns::ANSWER_C->value];
+                    $answer = $row[ExamFileColumns::GOODANSWER->value];
+                    $points = $row[ExamFileColumns::POINTS->value];
+                    $category = $row[ExamFileColumns::CATEGORY->value];
 
                     $query_existant = $entityManager->getRepository(QueryDrive::class)->findOneBy(array('NumberQuery' => $NumberQuery));
                     if (!$query_existant) {

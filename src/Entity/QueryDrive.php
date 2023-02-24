@@ -5,9 +5,11 @@ namespace App\Entity;
 use App\Repository\QueryDriveRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
 #[ORM\Entity(repositoryClass: QueryDriveRepository::class)]
 class QueryDrive
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

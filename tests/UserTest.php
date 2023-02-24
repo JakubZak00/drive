@@ -9,8 +9,8 @@ class UserTest extends WebTestCase
     public function testIndex(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/exam');
-        $this->assertCount(2, $crawler->filter('h4'));
+        $crawler = $client->request('GET', '/');
+        $this->assertCount(2, $crawler->filter('a'));
         $client->clickLink('View');
         $this->assertResponseIsSuccessful();
     }
